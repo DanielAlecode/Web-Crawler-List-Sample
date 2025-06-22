@@ -17,12 +17,12 @@ public class ListaEnlazada<T> implements Lista<T> {
     
     private Nodo<T> cabeza;
     private Nodo<T> cola;
-    private int tamaño;
+    private int tamanio;
 
     public ListaEnlazada() {
         cabeza = null;
         cola = null;
-        tamaño = 0;
+        tamanio = 0;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ListaEnlazada<T> implements Lista<T> {
             cola.siguiente = nuevo;
             cola = nuevo;
         }
-        tamaño++;
+        tamanio++;
         return true;
     }
 
@@ -51,7 +51,7 @@ public class ListaEnlazada<T> implements Lista<T> {
             nuevo.siguiente = cabeza;
             cabeza = nuevo;
         }
-        tamaño++;
+        tamanio++;
     }
 
     @Override
@@ -61,14 +61,14 @@ public class ListaEnlazada<T> implements Lista<T> {
 
     @Override
     public void insertarEn(int indice, T elemento) {
-        if (indice < 0 || indice > tamaño) throw new IndexOutOfBoundsException();
+        if (indice < 0 || indice > tamanio) throw new IndexOutOfBoundsException();
 
         if (indice == 0) {
             agregarInicio(elemento);
             return;
         }
 
-        if (indice == tamaño) {
+        if (indice == tamanio) {
             agregarFinal(elemento);
             return;
         }
@@ -80,7 +80,7 @@ public class ListaEnlazada<T> implements Lista<T> {
         }
         nuevo.siguiente = actual.siguiente;
         actual.siguiente = nuevo;
-        tamaño++;
+        tamanio++;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class ListaEnlazada<T> implements Lista<T> {
 
     @Override
     public boolean agregarTodosEn(int indice, Collection<? extends T> c) {
-        if (indice < 0 || indice > tamaño) throw new IndexOutOfBoundsException();
+        if (indice < 0 || indice > tamanio) throw new IndexOutOfBoundsException();
 
         boolean cambiado = false;
         for (T elemento : c) {
@@ -107,7 +107,7 @@ public class ListaEnlazada<T> implements Lista<T> {
 
     @Override
     public T obtener(int indice) {
-        if (indice < 0 || indice >= tamaño) throw new IndexOutOfBoundsException();
+        if (indice < 0 || indice >= tamanio) throw new IndexOutOfBoundsException();
 
         Nodo<T> actual = cabeza;
         for (int i = 0; i < indice; i++) {
@@ -141,7 +141,7 @@ public class ListaEnlazada<T> implements Lista<T> {
     @Override
     public void limpiar() {
         cabeza = cola = null;
-        tamaño = 0;
+        tamanio = 0;
     }
     
     @Override
@@ -188,7 +188,7 @@ public class ListaEnlazada<T> implements Lista<T> {
 
         if (cabeza.dato.equals(elemento)) {
             cabeza = cabeza.siguiente;
-            tamaño--;
+            tamanio--;
             if (cabeza == null) cola = null;
             return true;
         }
@@ -206,7 +206,7 @@ public class ListaEnlazada<T> implements Lista<T> {
         anterior.siguiente = actual.siguiente;
         if (actual == cola) cola = anterior;
 
-        tamaño--;
+        tamanio--;
         return true;
     }
 }
